@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring MVC</title>
+</head>
+<body>
+
+    <h1 th:text="${title}"></h1>
+    <p  th:if="${usuarios.isEmpty()}" th:text="${'La lista está vacía, no existen objetos usuario'}"></p>
+    <table th:if="${not usuarios.isEmpty()}" style="border-spacing: 15px; text-align: center;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <!-- verificamos si la lista 'usuarios' esta vacio o no, si no lo está iteramos sobre ella y mostramos los datos -->
+        <tbody>
+            <tr th:if="${!usuarios.isEmpty()}" th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.name}"></td>
+                <td th:text="${usuario.lastname}"></td>
+                <td th:if="${usuario.email == null}" th:text="'-'"></td>
+                <td th:if="${usuario.email != null}" th:text="${usuario.email}"></td>
+            </tr>
+        </tbody>
+        
+    </table>
+    
+</body>
+</html>

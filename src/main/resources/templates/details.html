@@ -11,6 +11,8 @@
     <ul>
         <li th:text="${usuario.name}"></li>
         <li th:text="${usuario.lastname}"></li>
+        <li th:if="${usuario.email}" th:text="${usuario.email}"></li>
+        <li th:if="${usuario.email == null}" th:text="${'No tiene email'}"></li>
     </ul>
     <p th:text="${user}"></p>
     
