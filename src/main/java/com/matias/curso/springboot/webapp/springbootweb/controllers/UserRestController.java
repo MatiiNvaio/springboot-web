@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.matias.curso.springboot.webapp.springbootweb.models.User;
 import com.matias.curso.springboot.webapp.springbootweb.models.dto.UserDto;
 
-// me convierte los metodos handler en Rest, es decir, que convierte los datos en Resto (JSON, XML)
+// me convierte los metodos handler en Rest, es decir, que convierte los datos en Rest (JSON, XML)
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
