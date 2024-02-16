@@ -1,9 +1,12 @@
 package com.matias.curso.springboot.webapp.springbootweb.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +27,21 @@ public class PathVariableController {
     @Value("${config.message}")
     private String message;
     @Value("${config.listOfValues}")
-    private String[] listOfValues;
+    private List<String> listOfValues;
     @Value("${config.code}")
     private Integer code;
+
+    // en values.properties creamos un JSON entero y lo insertamos aca
+    @Value("#{${config.valuesMap}}")
+    private Map<String, Object> valuesMap; 
+
+    // con esto podemos seleccionar lo que necesitemos de un objeto, en este caso el Map de productos
+    @Value("#{${config.valuesMap}.product}")
+    private String productByMap;
+
+    // con el objeto Environment y el metodo getPropertye es otra manera de usar datos de configuración de lo properties
+    @Autowired
+    private Environment environment;
 
     // con @PathVariable pasamos un dato por la ruta URL pero de manera mas amigable /api/var/baz/Matias por ejemplo
     @GetMapping("/baz/{message}")
@@ -63,6 +78,9 @@ public class PathVariableController {
         json.put("code", code);
         json.put("listOfValues", listOfValues);
         json.put("message", message);
+        json.put("messageEnviroment", environment.getProperty("config.message"));
+        json.put("valuesMap", valuesMap);
+        json.put("productByMap", productByMap);
 
         return json;
     }
