@@ -15,6 +15,11 @@
         <li th:if="${usuario.email == null}" th:text="${'No tiene email'}"></li>
     </ul>
     <p th:text="${user}"></p>
+
+    <a th:href="@{/list}">Listar</a>
+    <a th:href="@{/api/params/foo}">Params</a>
+    <a th:href="@{'/api/params/bar?text=' + ${title}}">Params variables</a>
+    <a th:href="@{/api/var/values}">Json values</a>
     
 </body>
 </html>
